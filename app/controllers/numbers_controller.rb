@@ -12,4 +12,10 @@ class NumbersController < ApplicationController
     num = Number.create(num_params)
     json render: num
   end
+
+  private
+
+  def num_params
+    params.permit(:numberA, :numberB)
+  end
 end
