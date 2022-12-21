@@ -13,7 +13,9 @@ class NumbersController < ApplicationController
     render json: num
   end
 
+
   private
+
 
   def num_params
     params.permit(:numberA, :numberB)
