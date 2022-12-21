@@ -10,7 +10,7 @@ class NumbersController < ApplicationController
 
   def create
     num = Number.create(num_params)
-    json render: num
+    render json: num
   end
 
   private
