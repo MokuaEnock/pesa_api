@@ -18,4 +18,8 @@ class UsersController < ApplicationController
   def user_params
     params.permit(:email, :username, :total, :phone)
   end
+
+  def pay_mpesa
+    
+  end
 end
