@@ -9,10 +9,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    user
-  end
-
-  def destroy
+    user = User.create(user_params)
+    render json: user
   end
 
   private
