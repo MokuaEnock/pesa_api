@@ -12,4 +12,10 @@ class SumsController < ApplicationController
     sum = Sum.find(params[:id])
     render json: sum
   end
+
+  private
+
+  def sum_params
+    params.permit(:sun, :difference)
+  end
 end
