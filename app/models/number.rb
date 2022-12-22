@@ -2,6 +2,6 @@ class Number < ApplicationRecord
   before_save :summation
 
   def summation
-    numberA + numberB
+    self.sum = numberA + numberB
   end
 end
