@@ -6,8 +6,6 @@ class User < ApplicationRecord
   before_save :pay_mpesa
 
   def pay_mpesa
-    ​
-    ​
     https = Net::HTTP.new(url.host, url.port)
     https.use_ssl = true
     ​
@@ -21,10 +19,10 @@ class User < ApplicationRecord
         "MTc0Mzc5YmZiMjc5ZjlhYTliZGJjZjE1OGU5N2RkNzFhNDY3Y2QyZTBjODkzMDU5YjEwZjc4ZTZiNzJhZGExZWQyYzkxOTIwMjIxMjIyMTYyMDI3",
       Timestamp: "20221222162027",
       TransactionType: "CustomerPayBillOnline",
-      Amount: 1,
-      PartyA: 254_708_374_149,
+      Amount: total,
+      PartyA: phone,
       PartyB: 174_379,
-      PhoneNumber: 254_708_374_149,
+      PhoneNumber: phone,
       CallBackURL: "https://mydomain.com/path",
       AccountReference: "CompanyXLTD",
       TransactionDesc: "Payment of X"
