@@ -1,0 +1,2 @@
+class SumsController < ApplicationController
+end
