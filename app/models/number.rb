@@ -4,4 +4,8 @@ class Number < ApplicationRecord
   def summation
     self.sum = numberA + numberB
   end
+
+  def differ
+    self.difference = numberA - numberB
+  end
 end
