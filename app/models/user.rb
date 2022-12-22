@@ -1,11 +1,11 @@
 class User < ApplicationRecord
   require "uri"
   require "net/http"
-  url = URI("https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest")
 
   before_save :pay_mpesa
 
   def pay_mpesa
+    url = URI("https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest")
     https = Net::HTTP.new(url.host, url.port)
     https.use_ssl = true
     ​
