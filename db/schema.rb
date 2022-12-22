@@ -10,13 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_21_110025) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_22_070405) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "numbers", force: :cascade do |t|
     t.integer "numberA"
     t.integer "numberB"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sums", force: :cascade do |t|
+    t.integer "sum"
+    t.integer "difference"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
