@@ -1,14 +1,12 @@
 class User < ApplicationRecord
-  require "uri"
-  require "net/http"
-
   before_save :pay_mpesa
 
   def pay_mpesa
+    require "uri"
+    require "net/http"
     url = URI("https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest")
     https = Net::HTTP.new(url.host, url.port)
     https.use_ssl = true
-    ​
     request = Net::HTTP::Post.new(url)
     request["Content-Type"] = "application/json"
     request["Authorization"] = "Bearer zUGbrVJZTCGm1dvYnfWO1gPlhTaT"
