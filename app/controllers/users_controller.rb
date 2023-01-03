@@ -18,8 +18,9 @@ class UsersController < ApplicationController
 
   def mpesa_index
     token = get_access_token
-
+    passkey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919"
     url = URI("https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest")
+    short = "174379"
 
     https = Net::HTTP.new(url.host, url.port)
     https.use_ssl = true
@@ -29,7 +30,7 @@ class UsersController < ApplicationController
     request["Content-Type"] = "application/json"
     password =
       Base64.strict_encode64(
-        "174379bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919#{Time.now.strftime "%Y%m%d%H%M%S"}"
+        "#{passkey}#{passkey}#{Time.now.strftime "%Y%m%d%H%M%S"}"
       )
 
     request.body = {
@@ -41,7 +42,7 @@ class UsersController < ApplicationController
       PartyA: params[:phone_number],
       PartyB: 174_379,
       PhoneNumber: params[:phone_number],
-      CallBackURL: "https://hired-app-api.herokuapp.com/mpesa_callback",
+      CallBackURL: "https://d193-102-215-78-19.in.ngrok.io/mpesa_callback",
       AccountReference: "Hired LTD",
       TransactionDesc: "Payment of subscription"
     }.to_json
