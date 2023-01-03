@@ -61,46 +61,34 @@ class UsersController < ApplicationController
       URI(
         "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"
       )
-
+    ​
     https = Net::HTTP.new(url.host, url.port)
     https.use_ssl = true
-
-    request = Net::HTTP::Get.new(url)
-    enc =
-      Base64.strict_encode64(
-        "GQURzRWARSNHgtjnzs2JbbnYn4XdA2Cz:pavEGKI5l8G7KUrY"
-      )
-    request["Authorization"] = "Basic #{enc}"
+    ​
+    request = Net::HTTP::Post.new(url)
+    request[
+      "Authorization"
+    ] = "Bearer cFJZcjZ6anEwaThMMXp6d1FETUxwWkIzeVBDa2hNc2M6UmYyMkJmWm9nMHFRR2xWOQ=="
+    ​
     response = https.request(request)
 
     data = JSON.parse(response.body)
     data["access_token"]
   end
 
-  def pay_mpesa
-    url = URI("https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest")
+  def sample
+    url =
+      URI(
+        "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"
+      )
     ​
     https = Net::HTTP.new(url.host, url.port)
     https.use_ssl = true
     ​
     request = Net::HTTP::Post.new(url)
-    request["Content-Type"] = "application/json"
-    request["Authorization"] = "Bearer PvjKWATucakNi5BKtacYJVvcQUcq"
-    ​
-    request.body = {
-      BusinessShortCode: code,
-      Password:
-        "MTc0Mzc5YmZiMjc5ZjlhYTliZGJjZjE1OGU5N2RkNzFhNDY3Y2QyZTBjODkzMDU5YjEwZjc4ZTZiNzJhZGExZWQyYzkxOTIwMjIxMjIxMTMxMjQy",
-      Timestamp: "20221221131242",
-      TransactionType: "CustomerPayBillOnline",
-      Amount: amount,
-      PartyA: phone,
-      PartyB: code,
-      PhoneNumber: phone,
-      CallBackURL: "https://mydomain.com/path",
-      AccountReference: "NewLife",
-      TransactionDesc: "Payment of drugs"
-    }
+    request[
+      "Authorization"
+    ] = "Bearer cFJZcjZ6anEwaThMMXp6d1FETUxwWkIzeVBDa2hNc2M6UmYyMkJmWm9nMHFRR2xWOQ=="
     ​
     response = https.request(request)
     puts response.read_body
