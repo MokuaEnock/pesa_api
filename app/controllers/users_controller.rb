@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     params.permit(:email, :username, :total, :phone)
   end
 
-  def pay_mpesa(amount, code, phone)
+  def pay_mpesa
     url = URI("https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest")
     ​
     https = Net::HTTP.new(url.host, url.port)
@@ -50,5 +50,5 @@ class UsersController < ApplicationController
     response = https.request(request)
     puts response.read_body
   end
-  
+
 end
