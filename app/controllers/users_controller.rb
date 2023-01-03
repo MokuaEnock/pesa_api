@@ -56,6 +56,27 @@ class UsersController < ApplicationController
     params.permit(:email, :username, :total, :phone)
   end
 
+  def get_access_token
+    url =
+      URI(
+        "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"
+      )
+
+    https = Net::HTTP.new(url.host, url.port)
+    https.use_ssl = true
+
+    request = Net::HTTP::Get.new(url)
+    enc =
+      Base64.strict_encode64(
+        "GQURzRWARSNHgtjnzs2JbbnYn4XdA2Cz:pavEGKI5l8G7KUrY"
+      )
+    request["Authorization"] = "Basic #{enc}"
+    response = https.request(request)
+
+    data = JSON.parse(response.body)
+    data["access_token"]
+  end
+
   def pay_mpesa
     url = URI("https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest")
     ​
